@@ -1,6 +1,6 @@
 def call(String imageName, String imageTag) {
 
-    container('kaniko') {
+    container('kaniko', {
 
         sh """
         /kaniko/executor \
@@ -10,4 +10,4 @@ def call(String imageName, String imageTag) {
         """
 
     }
-}
+})
