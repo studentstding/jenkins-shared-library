@@ -9,5 +9,5 @@ def call(String imageName, String imageTag) {
           --destination=${imageName}:${imageTag}
         """
 
-    }
-})
+    })
+}
