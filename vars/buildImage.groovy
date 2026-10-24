@@ -1,3 +1,5 @@
+// vars/buildImage.groovy
+
 def call(String imageName, String imageTag) {
     container('kaniko') {
         withCredentials([
@@ -6,17 +8,17 @@ def call(String imageName, String imageTag) {
                 variable: 'GCP_KEY_FILE'
             )
         ]) {
-            sh """
+            sh '''
                 set -eu
 
-                cp "\${GCP_KEY_FILE}" /kaniko/gcp-key.json
+                cp "${GCP_KEY_FILE}" /kaniko/gcp-key.json
                 export GOOGLE_APPLICATION_CREDENTIALS=/kaniko/gcp-key.json
 
                 /kaniko/executor \
-                    --context="\${WORKSPACE}" \
-                    --dockerfile="\${WORKSPACE}/Dockerfile" \
-                    --destination="${imageName}:${imageTag}"
-            """
+                    --context="${WORKSPACE}" \
+                    --dockerfile="${WORKSPACE}/Dockerfile" \
+                    --destination="''' + imageName + ''':''' + imageTag + '''"
+            '''
         }
     }
 }
