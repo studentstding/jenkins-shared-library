@@ -5,7 +5,7 @@ def call(String imageName, String imageTag) {
         sh """
         /kaniko/executor \
           --context=${WORKSPACE}/ \
-          --dockerfile=${WORKSPACE}/demo/demo/Dockerfile \
+          --dockerfile=${WORKSPACE}/Dockerfile \
           --destination=${imageName}:${imageTag}
         """
 
